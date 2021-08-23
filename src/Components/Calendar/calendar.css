@@ -1,0 +1,49 @@
+.btn {
+    position:absolute;
+    width:50px;
+    height:50px;
+    display:flex;
+    font-size:20px;
+    color:#FFFFFF;
+    text-align:center;
+  }
+  .text {
+    position:absolute;
+    align-self:center;
+    box-sizing:border-box;
+    color: #8C8C8C;
+    width:100%;
+  }
+  
+  .day {
+    position:absolute;
+    width:50px;
+    height:50px;
+    background:inherit;
+    background-color:white;
+    box-sizing:border-box;
+    border-width:1px;
+    border-style:solid;
+    border-color:rgba(215, 215, 215, 1);
+    border-radius:3px;
+    -moz-box-shadow:none;
+    -webkit-box-shadow:none;
+    box-shadow:none;
+    font-size:20px;
+    color:#FFFFFF;
+    text-align:center;
+  }
+  
+  .btn:hover > .day {
+    background-color:rgba(22, 155, 213, 1);
+  }
+  
+  .btn:hover {
+    cursor: grab; 
+  }
+  
+  .text:hover {
+    color: white;
+  }
+
+  
