@@ -1,49 +1,79 @@
-.btn {
-    position:absolute;
-    width:50px;
-    height:50px;
-    display:flex;
-    font-size:20px;
-    color:#FFFFFF;
-    text-align:center;
-  }
-  .text {
-    position:absolute;
-    align-self:center;
-    box-sizing:border-box;
-    color: #8C8C8C;
-    width:100%;
-  }
-  
-  .day {
-    position:absolute;
-    width:50px;
-    height:50px;
-    background:inherit;
-    background-color:white;
-    box-sizing:border-box;
-    border-width:1px;
-    border-style:solid;
-    border-color:rgba(215, 215, 215, 1);
-    border-radius:3px;
-    -moz-box-shadow:none;
-    -webkit-box-shadow:none;
-    box-shadow:none;
-    font-size:20px;
-    color:#FFFFFF;
-    text-align:center;
-  }
-  
-  .btn:hover > .day {
-    background-color:rgba(22, 155, 213, 1);
-  }
-  
-  .btn:hover {
-    cursor: grab; 
-  }
-  
-  .text:hover {
-    color: white;
-  }
+.day {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-  
+  background: inherit;
+  box-sizing: border-box;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgba(215, 215, 215, 1);
+  border-radius: 3px;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  position: relative;
+  width: 50px;
+  height: 60px;
+  transition: 0.5s;
+  flex-direction: column;
+}
+
+.day:hover {
+  background-color: rgba(22, 155, 213, 1);
+  opacity: 1;
+}
+
+.day:hover span {
+  color: black;
+}
+
+.text {
+  color: #8c8c8c;
+  font-size: 20px;
+}
+.text2 {
+  color: #8c8c8c;
+  font-size: 12px;
+  padding-top: 5px;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.hand{cursor: pointer;}      
+
+h3 {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.flex-container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+}
+
+.rTable {
+  display: table;
+}
+.rTableRow {
+  display: table-row;
+}
+.rTableHeading {
+  display: table-header-group;
+}
+.rTableBody {
+  display: table-row-group;
+}
+.rTableFoot {
+  display: table-footer-group;
+}
+.rTableCell,
+.rTableHead {
+  display: table-cell;
+  padding: 3px;
+}
