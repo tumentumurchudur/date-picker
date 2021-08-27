@@ -3,11 +3,18 @@ import { v4 } from "uuid";
 import React, { useState } from "react";
 import "./calendar.css";
 
+const m = moment();
 const { v4: uuidv4 } = require("uuid");
 const weekdays = moment.weekdaysShort();
 
 const rows = 6;
 const columns = 7;
+
+console.log(
+  "DATE COMPARE=",
+  moment(m.format("YYYY-MM-DD")).isAfter(moment().format("YYYY-MM-DD"))
+);
+console.log("TODAY DATE=", moment().format("YYYY-MM-DD"));
 
 const Day = ({ num }: { num: number }) => (
   <div id={v4()} className="day hand">
@@ -29,10 +36,10 @@ const CalendarBody = ({
   weekday: number;
   count?: number;
 }) => (
-  <div id={`${v4()}`} className="rTable">
-    <div id={`${v4()}`} className="rTableRow">
+  <div key={`${v4()}`} className="rTable">
+    <div key={`${v4()}`} className="rTableRow">
       {weekdays.map((e) => (
-        <div id={`${v4()}`} className="rTableCell">
+        <div key={`${v4()}`} className="rTableCell">
           {e}
         </div>
       ))}
@@ -47,14 +54,14 @@ const CalendarBody = ({
         )
       )
       .map((row) => (
-        <div id={`${v4()}`} className="rTableRow">
+        <div key={`${v4()}`} className="rTableRow">
           {row.map((e) =>
             e > 0 ? (
-              <div id={`${v4()}`} className="rTableCell">
+              <div key={`${v4()}`} className="rTableCell">
                 <Day num={e}></Day>
               </div>
             ) : (
-              <div id={`${v4()}`} className="rTableCell">
+              <div key={`${v4()}`} className="rTableCell">
                 <div className="hidden">{}</div>
               </div>
             )
@@ -64,38 +71,36 @@ const CalendarBody = ({
   </div>
 );
 
-const m = moment();
+const CalendarNavigation = ({ set }: { set: any }) => (
+  <div key={`row_${v4()}`} className="rTableRow">
+    <div key={`cell_${v4()}`} className="rTableCell">
+      <div key={`container_${v4()}`} className="flex-container">
+        <span
+          onClick={() =>
+            set(m.subtract(1, "months").startOf("month").daysInMonth())
+          }
+        >
+          <h3 className="hand">{"<"}</h3>
+        </span>
+        <h3>{m.format("MMM") + " " + m.format("Y")}</h3>
+
+        <span
+          onClick={() => set(m.add(1, "months").startOf("month").daysInMonth())}
+        >
+          <h3 className="hand">{">"}</h3>
+        </span>
+      </div>
+    </div>
+  </div>
+);
 
 export const DatePicker: React.FC<{}> = ({}) => {
   const [value, setValue] = useState<number>(m.daysInMonth());
 
   return (
-    <div className="rTable">
-      <div className="rTable">
-        <div className="rTableRow">
-          <div className="rTableCell">
-            <div className="flex-container">
-              <span
-                onClick={() =>
-                  setValue(
-                    m.subtract(1, "months").startOf("month").daysInMonth()
-                  )
-                }
-              >
-                <h3 className="hand">{"<"}</h3>
-              </span>
-              <h3>{m.format("MMM") + " " + m.format("Y")}</h3>
-
-              <span
-                onClick={() =>
-                  setValue(m.add(1, "months").startOf("month").daysInMonth())
-                }
-              >
-                <h3 className="hand">{">"}</h3>
-              </span>
-            </div>
-          </div>
-        </div>
+    <div key={`table_${v4()}`} className="rTable">
+      <div key={`table_${v4()}`} className="rTable">
+        <CalendarNavigation set={setValue}></CalendarNavigation>
         <CalendarBody
           daysInMonth={value}
           weekday={m.add(0, "days").startOf("month").day()}

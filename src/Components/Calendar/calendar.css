@@ -26,14 +26,17 @@
 
 .day:hover span {
   color: black;
+  opacity: 1;
 }
 
 .text {
   color: #8c8c8c;
+  transition: 0.5s;
   font-size: 20px;
 }
 .text2 {
   color: #8c8c8c;
+  transition: 0.5s;
   font-size: 12px;
   padding-top: 5px;
 }
@@ -44,7 +47,9 @@
   justify-content: center;
 }
 
-.hand{cursor: pointer;}      
+.hand {
+  cursor: pointer;
+}
 
 h3 {
   padding-left: 15px;
