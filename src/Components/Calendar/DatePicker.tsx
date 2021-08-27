@@ -11,7 +11,7 @@ const rows = 6;
 const columns = 7;
 
 const Day = ({ num, isBefore }: { num: number; isBefore: boolean }) => (
-  <div id={v4()} className={isBefore ? "pastday" : "day hand"}>
+  <div id={v4()} className={isBefore ? "day pastday noHover" : "day hand"}>
     <span id={`day_${v4()}`} className="text">
       {num}
     </span>
