@@ -10,19 +10,13 @@ const weekdays = moment.weekdaysShort();
 const rows = 6;
 const columns = 7;
 
-console.log(
-  "DATE COMPARE=",
-  moment(m.format("YYYY-MM-DD")).isAfter(moment().format("YYYY-MM-DD"))
-);
-console.log("TODAY DATE=", moment().format("YYYY-MM-DD"));
-
-const Day = ({ num }: { num: number }) => (
-  <div id={v4()} className="day hand">
+const Day = ({ num, isBefore }: { num: number; isBefore: boolean }) => (
+  <div id={v4()} className={isBefore ? "pastday" : "day hand"}>
     <span id={`day_${v4()}`} className="text">
       {num}
     </span>
     <span id={`frac_${v4()}`} className="text2">
-      4/16
+      {isBefore ? null : "4/16"}
     </span>
   </div>
 );
@@ -58,7 +52,12 @@ const CalendarBody = ({
           {row.map((e) =>
             e > 0 ? (
               <div key={`${v4()}`} className="rTableCell">
-                <Day num={e}></Day>
+                <Day
+                  num={e}
+                  isBefore={moment(
+                    `${m.format("YYYY-MM")}-${e.toString().padStart(2, "0")}`
+                  ).isBefore(moment().format("YYYY-MM-DD"))}
+                ></Day>
               </div>
             ) : (
               <div key={`${v4()}`} className="rTableCell">
