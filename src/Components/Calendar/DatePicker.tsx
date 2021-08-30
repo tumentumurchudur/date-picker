@@ -4,14 +4,21 @@ import React, { useState } from "react";
 import "./calendar.css";
 
 const m = moment();
-const { v4: uuidv4 } = require("uuid");
-const weekdays = moment.weekdaysShort();
 
-const rows = 6;
-const columns = 7;
-
-const Day = ({ num, isBefore }: { num: number; isBefore: boolean }) => (
-  <div id={v4()} className={isBefore ? "day pastday noHover" : "day hand"}>
+const Day = ({
+  num,
+  isBefore,
+  date,
+}: {
+  num: number;
+  isBefore: boolean;
+  date: string;
+}) => (
+  <div
+    key={date}
+    onClick={() => alert(date)}
+    className={isBefore ? "day pastday noHover" : "day hand"}
+  >
     <span id={`day_${v4()}`} className="text">
       {num}
     </span>
@@ -32,16 +39,14 @@ const CalendarBody = ({
 }) => (
   <div key={`${v4()}`} className="rTable">
     <div key={`${v4()}`} className="rTableRow">
-      {weekdays.map((e) => (
+      {moment.weekdaysShort().map((e) => (
         <div key={`${v4()}`} className="rTableCell">
           {e}
         </div>
       ))}
     </div>
 
-    {Array.from({ length: rows }, (e) =>
-      Array.from({ length: columns }, (e) => 0)
-    )
+    {Array.from({ length: 6 }, (e) => Array.from({ length: 7 }, (e) => 0))
       .map((row, i) =>
         row.map((e, j) =>
           row.length * i + j >= weekday && daysInMonth > count ? ++count : e
@@ -57,6 +62,9 @@ const CalendarBody = ({
                   isBefore={moment(
                     `${m.format("YYYY-MM")}-${e.toString().padStart(2, "0")}`
                   ).isBefore(moment().format("YYYY-MM-DD"))}
+                  date={`${m.format("YYYY-MM")}-${e
+                    .toString()
+                    .padStart(2, "0")}`}
                 ></Day>
               </div>
             ) : (
