@@ -6,48 +6,81 @@ import { type } from "os";
 
 export const DatePicker: React.FC<{}> = ({}) => {
   const [calendar, setCalandar] = useState([]);
-  const [value, setValue] = useState<Moment>(moment());
-  const m = moment();
-  const nextMonth = () => {
-    m.clone().add(1, "days").startOf("month").day();;
+  const currMonth = moment().format("MMMM YYYY");
+  const [value, setValue] = useState(currMonth);
 
-    setValue(m);
-    console.log(value.format("MMM") + " " + value.format("YYYY"));
-  };
+  // const [value, setValue] = useState<Moment>(moment());
 
-  const previousMonth = () => {
-    m.subtract(1, "days").startOf("month").day();
-    setValue(m);
-    console.log(value.format("MMM") + " " + value.format("YYYY"));
-  };
+  // console.log("moment:", moment());
 
-  const CalendarNavigation = () => (
-    <div key={`row_${v4()}`} className="rTableRow">
-      <div key={`cell_${v4()}`} className="rTableCell">
-        <div key={`container_${v4()}`} className="flex-container">
-          <span onClick={() => previousMonth()}>
-            <h3 className="hand">{"<"}</h3>
-          </span>
-          <h3>{value.format("MMM") + " " + value.format("YYYY")}</h3>
+  // const m = moment();
 
-          <span onClick={() => nextMonth()}>
-            <h3 className="hand">{">"}</h3>
-          </span>
-        </div>
-      </div>
-    </div>
-  );
+  // const nextMonth = () => {
+  //   m.clone().add(1, "days").startOf("month").day();
+
+  //   setValue(m);
+  //   console.log(value.format("MMM") + " " + value.format("YYYY"));
+  // };
+
+  // const previousMonth = () => {
+  //   m.subtract(1, "days").startOf("month").day();
+  //   setValue(m);
+  //   console.log(value.format("MMM") + " " + value.format("YYYY"));
+  // };
+
+  // const CalendarNavigation = () => (
+  //   <div key={`row_${v4()}`} className="rTableRow">
+  //     <div key={`cell_${v4()}`} className="rTableCell">
+  //       <div key={`container_${v4()}`} className="flex-container">
+  //         <span onClick={() => previousMonth()}>
+  //           <h3 className="hand">{"<"}</h3>
+  //         </span>
+  //         <h3>{value.format("MMM") + " " + value.format("YYYY")}</h3>
+
+  //         <span onClick={() => nextMonth()}>
+  //           <h3 className="hand">{">"}</h3>
+  //         </span>
+  //       </div>
+  //     </div>
+  //   </div>
+  // );
+
+  // return (
+  //   <div key={`table_${v4()}`} className="rTable">
+  //     <div key={`table_${v4()}`} className="rTable">
+  //       <CalendarNavigation></CalendarNavigation>
+  //       {/* <CalendarBody></CalendarBody> */}
+  //       {/* <CalendarBody
+  //         daysInMonth={value}
+  //         weekday={m.add(0, "days").startOf("month").day()}
+  //       ></CalendarBody> */}
+  //     </div>
+  //   </div>
+  // );
 
   return (
-    <div key={`table_${v4()}`} className="rTable">
-      <div key={`table_${v4()}`} className="rTable">
-        <CalendarNavigation></CalendarNavigation>
-        {/* <CalendarBody></CalendarBody> */}
-        {/* <CalendarBody
-          daysInMonth={value}
-          weekday={m.add(0, "days").startOf("month").day()}
-        ></CalendarBody> */}
-      </div>
+    <div>
+      <span
+        style={{ marginRight: 20, cursor: "pointer" }}
+        onClick={() => {
+          console.log("left");
+          const prevMonth = moment(value).add(-1, "month").format("MMMM YYYY");
+          setValue(prevMonth);
+        }}
+      >
+        left
+      </span>
+      {value}
+      <span
+        style={{ marginLeft: 20, cursor: "pointer" }}
+        onClick={() => {
+          console.log("right");
+          const nextMonth = moment(value).add(1, "month").format("MMMM YYYY");
+          setValue(nextMonth);
+        }}
+      >
+        right
+      </span>
     </div>
   );
 };
