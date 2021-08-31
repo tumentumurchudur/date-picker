@@ -1,9 +1,9 @@
 import { v4 } from "uuid";
-import React, { useEffect, useState, FC } from "react";
+import React, { useEffect, useState } from "react";
 import moment from "moment";
 import "./calendar.css";
 
-export const DatePicker: React.FC = () => {
+export const DatePicker = () => {
   const [calendar, setCalandar] = useState<number[][]>([]);
   const [value, setValue] = useState<string>(moment().format("MMMM YYYY"));
   const shiftMonth = (num: number) => {
