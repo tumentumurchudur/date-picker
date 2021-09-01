@@ -2,7 +2,7 @@ import { v4 } from "uuid";
 import { useEffect, useState } from "react";
 import moment from "moment";
 import "./calendar.css";
-import { CalendarAvailability } from "./CalendarAvailability";
+import { CalendarAvailability } from "../Availability";
 
 export const DatePicker = () => {
   const [calendar, setCalandar] = useState<number[][]>([]);

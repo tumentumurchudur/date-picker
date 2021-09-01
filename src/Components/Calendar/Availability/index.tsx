@@ -2,7 +2,7 @@ import { v4 } from "uuid";
 import { useEffect, useState } from "react";
 import moment from "moment";
 import "./calendaravailability.css";
-import { PiChart } from "./PiChart";
+import { PiChart } from "../PiChart";
 
 interface ICalendarAvailabilityProps {
   stringDate: string;
