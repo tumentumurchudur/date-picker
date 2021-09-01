@@ -1,0 +1,24 @@
+.circle {
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    border-style: solid;
+    border-color: purple;
+    border-width: 5px;
+  }
+  
+  .ccenter {
+    background-color: transparent;
+    display: flex;
+    justify-content: center;
+    width: 75px;
+    height: 20px;
+    align-items: center;
+    font-size: 12px;
+    font-style: bold;
+    padding-top: 10px
+  }
+  
+  
+  
+  

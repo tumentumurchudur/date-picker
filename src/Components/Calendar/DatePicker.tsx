@@ -1,14 +1,15 @@
 import { v4 } from "uuid";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import moment from "moment";
 import "./calendar.css";
+import { CalendarAvailability } from "./CalendarAvailability";
 
 export const DatePicker = () => {
   const [calendar, setCalandar] = useState<number[][]>([]);
-  const [value, setValue] = useState<string>(moment().format("MMMM YYYY"));
-  const shiftMonth = (num: number) => {
-    setValue(moment(value).add(num, "month").format("MMMM YYYY"));
-  };
+  const m = moment();
+
+  const [value, setValue] = useState<string>(m.format("MMMM YYYY"));
+  const [available, setAvailibility] = useState<string>(m.format("YYYY-MM-DD"));
 
   useEffect(() => {
     const getCalendar = (days: number, weekday: number, count = 0) =>
@@ -22,6 +23,10 @@ export const DatePicker = () => {
     const weekday = moment(value).add(0, "days").startOf("month").day();
     setCalandar(getCalendar(days, weekday));
   }, [value]);
+
+  const shiftMonth = (num: number) => {
+    setValue(moment(value).add(num, "month").format("MMMM YYYY"));
+  };
 
   const CalendarNavigation = () => (
     <div key={`row_${v4()}`} className="rTableRow">
@@ -40,20 +45,24 @@ export const DatePicker = () => {
       </div>
     </div>
   );
-  function isBefore(day: number) {
-    return moment(
-      `${moment(value)}-${day.toString().padStart(2, "0")}`
+  const isBefore = (day: number) =>
+    moment(
+      `${moment(value).format("YYYY-MM")}-${day.toString().padStart(2, "0")}`
     ).isBefore(moment().format("YYYY-MM-DD"));
-  }
 
+  const handelCalendarAvilability = (date: string) => {
+    setAvailibility(date);
+  };
   const Day = ({ day }: { day: number }) => (
     <div key={`${v4()}`} className="rTableCell">
       {day > 0 ? (
         <div
-          key={`${moment().format(value)}-${day.toString().padStart(2, "0")}`}
+          key={`${value}-${day.toString().padStart(2, "0")}`}
           onClick={() =>
-            alert(
-              `${moment().format(value)}-${day.toString().padStart(2, "0")}`
+            handelCalendarAvilability(
+              `${moment(value).format("YYYY-MM")}-${day
+                .toString()
+                .padStart(2, "0")}`
             )
           }
           className={isBefore(day) ? "day pastday noHover" : "day hand"}
@@ -92,9 +101,16 @@ export const DatePicker = () => {
 
   return (
     <div key={`table_${v4()}`} className="rTable">
-      <div key={`table_${v4()}`} className="rTable">
-        <CalendarNavigation></CalendarNavigation>
-        <CalendarBody></CalendarBody>
+      <div key={`${v4()}`} className="rTableRow">
+        <div key={`${v4()}`} className="rTableCell">
+          <div key={`table_${v4()}`} className="rTable">
+            <CalendarNavigation></CalendarNavigation>
+            <CalendarBody></CalendarBody>
+          </div>
+        </div>
+        <div key={`${v4()}`} className="rTableCell">
+          <CalendarAvailability stringDate={available}></CalendarAvailability>
+        </div>{" "}
       </div>
     </div>
   );
