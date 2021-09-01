@@ -1,8 +1,27 @@
 .box {
   display: flex;
-  flex-direction: column;
-  justify-content: space-around;
   height: 20px;
-  align-items: flex-start;
   padding-left: 75px;
+}
+
+.pigroup {
+  display: flex;
+  align-items: stretch;
+  padding-left: 75px;
+  padding-top: 30px;
+}
+
+div div {
+  justify-content: space-between;
+}
+
+.container {
+  background-color: gray;
+}
+
+.custombtn {
+  background-color: white;
+  border-color: blue;
+  border-width: 1px;
+  border-radius:5px;
 }

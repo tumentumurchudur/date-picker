@@ -100,17 +100,36 @@ export const DatePicker = () => {
   );
 
   return (
-    <div key={`table_${v4()}`} className="rTable">
-      <div key={`${v4()}`} className="rTableRow">
-        <div key={`${v4()}`} className="rTableCell">
-          <div key={`table_${v4()}`} className="rTable">
-            <CalendarNavigation></CalendarNavigation>
-            <CalendarBody></CalendarBody>
+    <div>
+      <div key={`table_${v4()}`} className="rTable">
+        <div key={`${v4()}`} className="rTableRow">
+          <div key={`${v4()}`} className="rTableCell">
+            <div className="flex-container">
+              <span>Time Prefrence</span>
+              <select id="u3167_input">
+                <option value="None">None</option>
+                <option value="AM">AM</option>
+                <option value="PM">PM</option>
+              </select>
+
+              <button className="custombtn">View Today</button>
+            </div>
           </div>
         </div>
-        <div key={`${v4()}`} className="rTableCell">
-          <CalendarAvailability stringDate={available}></CalendarAvailability>
-        </div>{" "}
+      </div>
+
+      <div key={`table_${v4()}`} className="rTable">
+        <div key={`${v4()}`} className="rTableRow">
+          <div key={`${v4()}`} className="rTableCell">
+            <div key={`table_${v4()}`} className="rTable">
+              <CalendarNavigation></CalendarNavigation>
+              <CalendarBody></CalendarBody>
+            </div>
+          </div>
+          <div key={`${v4()}`}>
+            <CalendarAvailability stringDate={available}></CalendarAvailability>
+          </div>{" "}
+        </div>
       </div>
     </div>
   );

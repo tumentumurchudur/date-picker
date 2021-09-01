@@ -22,8 +22,22 @@ export const CalendarAvailability = (props: ICalendarAvailabilityProps) => {
         </span>
       </div>
       <div>
-        <PiChart text={"9am to 12am"} fraction={"3/4"}></PiChart>
-        <PiChart text={"12am to 3am"} fraction={"3/4"}></PiChart>
+        <div className="pigroup">
+          <div>
+            <PiChart text={"6am to 9am"} fraction={"2/4"}></PiChart>
+          </div>
+          <div>
+            <PiChart text={"9am to 12pm"} fraction={"1/4"}></PiChart>
+          </div>
+        </div>
+        <div className="pigroup">
+          <div>
+            <PiChart text={"12pm to 3pm"} fraction={"0/4"}></PiChart>
+          </div>
+          <div>
+            <PiChart text={"3pm to 6pm"} fraction={"2/4"}></PiChart>
+          </div>
+        </div>
       </div>
     </div>
   );
