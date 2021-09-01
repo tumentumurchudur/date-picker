@@ -11,5 +11,9 @@ export const PiChart = ({
   <div className="circle">
     <span className="ccenter">{text}</span>
     <span className="ccenter">{fraction}</span>
+
+
+
+    <label>Nick</label>
   </div>
 );
