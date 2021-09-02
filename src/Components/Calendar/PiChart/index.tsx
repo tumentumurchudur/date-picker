@@ -1,5 +1,5 @@
 import React from "react";
-import "./pichart.css";
+import "./index.scss";
 
 export const PiChart = ({
   text,
