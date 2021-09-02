@@ -23,7 +23,7 @@ export const Day = ({
   };
 
   return (
-    <div key={`${v4()}`} className="rTableCell">
+    <div className="rTableCell">
       {day > 0 ? (
         <div
           key={`${yearmonth}-${day.toString().padStart(2, "0")}`}
@@ -36,9 +36,7 @@ export const Day = ({
           }
           className={isBefore(day) ? "day pastday noHover" : "day hand"}
         >
-          <span id={`day_${v4()}`} className="text">
-            {day}
-          </span>
+          <span className="text">{day}</span>
           <span id={`frac_${v4()}`} className="text2">
             {isBefore(day) ? null : "4/16"}
           </span>

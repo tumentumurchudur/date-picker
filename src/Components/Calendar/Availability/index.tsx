@@ -9,7 +9,7 @@ interface ICalendarAvailabilityProps {
 export const CalendarAvailability = (props: ICalendarAvailabilityProps) => {
   return (
     <div>
-      <div>
+      <div>                     
         <span className="box">{"Availability for"}</span>
         <span className="box">
           <b>{`${moment(props.stringDate).format("dddd")} ${moment(

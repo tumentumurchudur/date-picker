@@ -1,10 +1,9 @@
-import { v4 } from "uuid";
 import { useEffect, useState } from "react";
 import moment from "moment";
 import "./index.scss";
 import { CalendarAvailability } from "../Availability";
 import { CalendarBody } from "./CalendarBody";
-
+import { TimePrefrence } from "./TimePrefrence";
 export const DatePicker = () => {
   const [value, setValue] = useState<string>(moment().format("MMMM YYYY"));
   const [available, setAvailibility] = useState<string>(
@@ -38,7 +37,7 @@ export const DatePicker = () => {
             <h3 className="hand">{"<"}</h3>
           </span>
           <h3>
-            {moment(value).format("MMM") + " " + moment(value).format("YYYY")}
+            {moment(value).format("MMMM") + " " + moment(value).format("YYYY")}
           </h3>
           <span onClick={() => shiftMonth(1)}>
             <h3 className="hand">{">"}</h3>
@@ -50,22 +49,11 @@ export const DatePicker = () => {
 
   return (
     <div>
-      <div key={`table_${v4()}`} className="rTable">
-        <div key={`${v4()}`} className="rTableRow">
-          <div key={`${v4()}`} className="rTableCell">
-            <div className="flex-container">
-              <span>Time Prefrence</span>
-              <select id="u3167_input">
-                <option value="None">None</option>
-                <option value="AM">AM</option>
-                <option value="PM">PM</option>
-              </select>
-              <button className="custombtn">View Today</button>
-            </div>
-          </div>
+      <div className="rTable">
+        <div className="rTableRow">
+          <TimePrefrence />
         </div>
       </div>
-
       <div className="rTable">
         <div className="rTableRow">
           <div className="rTableCell">

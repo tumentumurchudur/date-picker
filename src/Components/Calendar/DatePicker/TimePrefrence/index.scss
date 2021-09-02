@@ -1,0 +1,19 @@
+.flex-gap {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+.custombtn {
+  background-color: white;
+  border-color: blue;
+  border-width: 1px;
+  border-radius: 5px;
+  padding-left: 5px;
+  width: 130px;
+  cursor: pointer;
+}
+select,
+option {
+  width: 130px;
+  cursor: pointer;
+}
