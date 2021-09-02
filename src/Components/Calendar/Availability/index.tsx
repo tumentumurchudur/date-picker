@@ -1,5 +1,3 @@
-import { v4 } from "uuid";
-import { useEffect, useState } from "react";
 import moment from "moment";
 import "./index.scss";
 import { PiChart } from "../PiChart";
@@ -23,20 +21,12 @@ export const CalendarAvailability = (props: ICalendarAvailabilityProps) => {
       </div>
       <div>
         <div className="pigroup">
-          <div>
-            <PiChart text={"6am to 9am"} fraction={"2/4"}></PiChart>
-          </div>
-          <div>
-            <PiChart text={"9am to 12pm"} fraction={"1/4"}></PiChart>
-          </div>
+          <PiChart text={"6am to 9am"} fraction={"2/4"} />
+          <PiChart text={"9am to 12pm"} fraction={"1/4"} />
         </div>
         <div className="pigroup">
-          <div>
-            <PiChart text={"12pm to 3pm"} fraction={"0/4"}></PiChart>
-          </div>
-          <div>
-            <PiChart text={"3pm to 6pm"} fraction={"2/4"}></PiChart>
-          </div>
+          <PiChart text={"12pm to 3pm"} fraction={"0/4"} />
+          <PiChart text={"3pm to 6pm"} fraction={"2/4"} />
         </div>
       </div>
     </div>

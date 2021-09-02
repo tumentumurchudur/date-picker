@@ -1,19 +1,41 @@
 import { v4 } from "uuid";
-import { useEffect, useState } from "react";
+import { Fragment, useState } from "react";
 import moment from "moment";
 import "./index.scss";
 import { CalendarAvailability } from "../Availability";
 import { CalendarBody } from "./CalendarBody";
 
+const DATE_FORMAT = "MMMM YYYY";
+const getCalendar = (days: number, weekday: number, count = 0): number[][] =>
+  Array.from({ length: 6 }, (e) => Array.from({ length: 7 }, (e) => 0)).map(
+    (row, i) =>
+      row.map((e, j) =>
+        row.length * i + j >= weekday && days > count ? ++count : e
+      )
+  );
+
 export const DatePicker = () => {
-  const m = moment();
+  const currentDate = moment();
 
-  const [value, setValue] = useState<string>(m.format("MMMM YYYY"));
-  const [available, setAvailibility] = useState<string>(m.format("YYYY-MM-DD"));
-
+  const [value, setValue] = useState<string>(currentDate.format(DATE_FORMAT));
+  const [available, setAvailibility] = useState<string>(
+    currentDate.format("YYYY-MM-DD")
+  );
+  const [calendar, setCalendar] = useState<number[][]>(
+    getCalendar(
+      moment(value).daysInMonth(),
+      moment(value).add(0, "days").startOf("month").day()
+    )
+  );
 
   const shiftMonth = (num: number) => {
-    setValue(moment(value).add(num, "month").format("MMMM YYYY"));
+    setValue(moment(value).add(num, "month").format(DATE_FORMAT));
+    setCalendar(
+      getCalendar(
+        moment(value).daysInMonth(),
+        moment(value).add(0, "days").startOf("month").day()
+      )
+    );
   };
 
   const CalendarNavigation = () => (
@@ -35,12 +57,12 @@ export const DatePicker = () => {
   );
 
   return (
-    <div>
-      <div key={`table_${v4()}`} className="rTable">
-        <div key={`${v4()}`} className="rTableRow">
-          <div key={`${v4()}`} className="rTableCell">
+    <Fragment>
+      <div className="rTable">
+        <div className="rTableRow">
+          <div className="rTableCell">
             <div className="flex-container">
-              <span>Time Prefrence</span>
+              <span>Time Preference</span>
               <select id="u3167_input">
                 <option value="None">None</option>
                 <option value="AM">AM</option>
@@ -53,19 +75,23 @@ export const DatePicker = () => {
         </div>
       </div>
 
-      <div key={`table_${v4()}`} className="rTable">
-        <div key={`${v4()}`} className="rTableRow">
-          <div key={`${v4()}`} className="rTableCell">
-            <div key={`table_${v4()}`} className="rTable">
-              <CalendarNavigation></CalendarNavigation>
-              <CalendarBody month = {value} setAvailibility={()=>setAvailibility}></CalendarBody>
+      <div className="rTable">
+        <div className="rTableRow">
+          <div className="rTableCell">
+            <div className="rTable">
+              <CalendarNavigation />
+              <CalendarBody
+                month={value}
+                calendar={calendar}
+                setAvailibility={(date: string) => {
+                  setAvailibility(moment(date).format("YYYY-MM-DD"));
+                }}
+              ></CalendarBody>
             </div>
           </div>
-          <div key={`${v4()}`}>
-            <CalendarAvailability stringDate={available}></CalendarAvailability>
-          </div>
+          <CalendarAvailability stringDate={available} />
         </div>
       </div>
-    </div>
+    </Fragment>
   );
 };

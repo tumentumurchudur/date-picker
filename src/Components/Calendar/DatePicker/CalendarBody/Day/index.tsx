@@ -28,13 +28,13 @@ export const Day = ({
       {day > 0 ? (
         <div
           key={`${yearmonth}-${day.toString().padStart(2, "0")}`}
-          onClick={() =>
+          onClick={() => {
             handelCalendarAvilability(
               `${moment(yearmonth).format("YYYY-MM")}-${day
                 .toString()
                 .padStart(2, "0")}`
-            )
-          }
+            );
+          }}
           className={isBefore(day) ? "day pastday noHover" : "day hand"}
         >
           <span id={`day_${v4()}`} className="text">
