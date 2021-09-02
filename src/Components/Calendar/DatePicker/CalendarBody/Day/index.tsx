@@ -1,5 +1,4 @@
 import { v4 } from "uuid";
-import { useEffect, useState } from "react";
 import moment from "moment";
 import "./index.scss";
 
