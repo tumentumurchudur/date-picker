@@ -1,12 +1,15 @@
 import { v4 } from "uuid";
 import moment from "moment";
 import "./index.scss";
+import { useState } from "react";
 
 export const Day = ({
+  setSelected,
   day,
   yearmonth,
   setAvailability,
 }: {
+  setSelected: Function;
   day: number;
   yearmonth: string;
   setAvailability: Function;
@@ -19,6 +22,7 @@ export const Day = ({
     ).isBefore(moment().format("YYYY-MM-DD"));
 
   const handelCalendarAvilability = (date: string) => {
+    setSelected(`${yearmonth}-${day.toString().padStart(2, "0")}`);
     setAvailability(date);
   };
 

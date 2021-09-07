@@ -1,14 +1,20 @@
 import { useEffect, useState } from "react";
 import moment from "moment";
 import "./index.scss";
-import { CalendarAvailability } from "../Availability";
+import { AvailabilityDate } from "../AvailabilityDate";
+import { AvailabilityShift } from "../AvailabilityShift";
 import { CalendarBody } from "./CalendarBody";
 import { TimePrefrence } from "./TimePrefrence";
 export const DatePicker = () => {
   const [value, setValue] = useState<string>(moment().format("MMMM YYYY"));
+  // const [selected, setSelected] = useState<string>(moment().format("YYYY-MM-DD"));
+//console.log(selected)
+  
   const [available, setAvailibility] = useState<string>(
     moment().format("YYYY-MM-DD")
   );
+
+  const [shift, setShift] = useState<string>("0");
 
   const [calendar, setCalandar] = useState<number[][]>([]);
   const getCalendar = (days: number, weekday: number, count = 0) =>
@@ -24,6 +30,11 @@ export const DatePicker = () => {
     const weekday = moment(value).add(0, "days").startOf("month").day();
     setCalandar(getCalendar(days, weekday));
   }, [value]);
+
+  // useEffect(() => {
+  //   alert(selected)
+  // }, [selected]);
+
 
   const shiftMonth = (num: number) => {
     setValue(moment(value).add(num, "month").format("MMMM YYYY"));
@@ -51,7 +62,7 @@ export const DatePicker = () => {
     <div>
       <div className="rTable">
         <div className="rTableRow">
-          <TimePrefrence />
+          <TimePrefrence setShift={setShift} reSet={setValue} />
         </div>
       </div>
       <div className="rTable">
@@ -60,6 +71,7 @@ export const DatePicker = () => {
             <div className="rTable">
               <CalendarNavigation></CalendarNavigation>
               <CalendarBody
+                // setSelected={setSelected}
                 month={value}
                 setAvailibility={setAvailibility}
                 calendar={calendar}
@@ -67,7 +79,8 @@ export const DatePicker = () => {
             </div>
           </div>
           <div>
-            <CalendarAvailability stringDate={available}></CalendarAvailability>
+            <AvailabilityDate stringDate={available} />
+            <AvailabilityShift setShift={shift} />
           </div>
         </div>
       </div>

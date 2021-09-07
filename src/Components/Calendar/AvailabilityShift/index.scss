@@ -1,0 +1,28 @@
+.box {
+  display: flex;
+  height: 20px;
+  padding-left: 75px;
+}
+
+.pigroup {
+  display: flex;
+  align-items: stretch;
+  padding-left: 75px;
+  padding-top: 30px;
+}
+
+div div {
+  justify-content: space-between;
+}
+
+.container {
+  background-color: gray;
+}
+
+.timeprefrencebtn {
+  background-color: white;
+  border-color: blue;
+  border-width: 1px;
+  border-radius: 5px;
+  width: 220px;
+}

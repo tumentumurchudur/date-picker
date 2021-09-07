@@ -1,24 +1,103 @@
-.circle {
-    width: 85px;
-    height: 85px;
+.chart1 {
+  width: 100px;
+  height: 100px;
+  border: 1px solid transparent;
+  position: relative;
+  color: black;
+  font-size: 12px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  box-sizing: border-box;
+  &:after {
+    box-sizing: border-box;
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100px;
+    height: 100px;
+    border: 3px solid;
+    border-color: blue blue blue lightgray;
     border-radius: 50%;
-    border-style: solid;
-    border-color: blue;
-    border-width: 3px;
+    transform: rotate(45deg);
   }
-  
-  .ccenter {
-    background-color: transparent;
-    display: flex;
-    justify-content: center;
-    width: 85px;
-    height: 20px;
-    align-items: center;
-    font-size: 12px;
-    font-style: bold;
-    padding-top: 10px
+}
+
+.chart2 {
+  width: 100px;
+  height: 100px;
+  border: 1px solid transparent;
+  position: relative;
+  color: black;
+  font-size: 12px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  box-sizing: border-box;
+  &:after {
+    box-sizing: border-box;
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100px;
+    height: 100px;
+    border: 3px solid;
+    border-color: blue lightgray lightgray lightgray;
+    border-radius: 50%;
+    transform: rotate(45deg);
   }
-  
-  
-  
-  
+}
+
+.chart3 {
+  width: 100px;
+  height: 100px;
+  border: 1px solid transparent;
+  position: relative;
+  color: black;
+  font-size: 12px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  box-sizing: border-box;
+  &:after {
+    box-sizing: border-box;
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100px;
+    height: 100px;
+    border: 3px solid;
+    border-color: blue blue blue blue;
+    border-radius: 50%;
+    transform: rotate(45deg);
+  }
+}
+
+.chart4 {
+  width: 100px;
+  height: 100px;
+  border: 1px solid transparent;
+  position: relative;
+  color: black;
+  font-size: 12px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  box-sizing: border-box;
+  &:after {
+    box-sizing: border-box;
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100px;
+    height: 100px;
+    border: 3px solid;
+    border-color: blue blue lightgray lightgray;
+    border-radius: 50%;
+    transform: rotate(45deg);
+  }
+}
