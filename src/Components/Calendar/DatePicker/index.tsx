@@ -1,22 +1,21 @@
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import moment from "moment";
+
 import "./index.scss";
 import { AvailabilityDate } from "../AvailabilityDate";
 import { AvailabilityShift } from "../AvailabilityShift";
 import { CalendarBody } from "./CalendarBody";
 import { TimePrefrence } from "./TimePrefrence";
+
 export const DatePicker = () => {
   const [value, setValue] = useState<string>(moment().format("MMMM YYYY"));
-  // const [selected, setSelected] = useState<string>(moment().format("YYYY-MM-DD"));
-//console.log(selected)
-  
+  const [selectedDay, setSelectedDay] = useState("");
   const [available, setAvailibility] = useState<string>(
     moment().format("YYYY-MM-DD")
   );
-
   const [shift, setShift] = useState<string>("0");
-
   const [calendar, setCalandar] = useState<number[][]>([]);
+
   const getCalendar = (days: number, weekday: number, count = 0) =>
     Array.from({ length: 6 }, (e) => Array.from({ length: 7 }, (e) => 0)).map(
       (row, i) =>
@@ -24,17 +23,6 @@ export const DatePicker = () => {
           row.length * i + j >= weekday && days > count ? ++count : e
         )
     );
-
-  useEffect(() => {
-    const days = moment(value).daysInMonth();
-    const weekday = moment(value).add(0, "days").startOf("month").day();
-    setCalandar(getCalendar(days, weekday));
-  }, [value]);
-
-  // useEffect(() => {
-  //   alert(selected)
-  // }, [selected]);
-
 
   const shiftMonth = (num: number) => {
     setValue(moment(value).add(num, "month").format("MMMM YYYY"));
@@ -58,8 +46,14 @@ export const DatePicker = () => {
     </div>
   );
 
+  useEffect(() => {
+    const days = moment(value).daysInMonth();
+    const weekday = moment(value).add(0, "days").startOf("month").day();
+    setCalandar(getCalendar(days, weekday));
+  }, [value]);
+
   return (
-    <div>
+    <Fragment>
       <div className="rTable">
         <div className="rTableRow">
           <TimePrefrence setShift={setShift} reSet={setValue} />
@@ -69,11 +63,14 @@ export const DatePicker = () => {
         <div className="rTableRow">
           <div className="rTableCell">
             <div className="rTable">
-              <CalendarNavigation></CalendarNavigation>
+              <CalendarNavigation />
               <CalendarBody
-                // setSelected={setSelected}
+                selectedDay={selectedDay}
                 month={value}
-                setAvailibility={setAvailibility}
+                setAvailibility={(date: string) => {
+                  setAvailibility(date);
+                  setSelectedDay(date);
+                }}
                 calendar={calendar}
               ></CalendarBody>
             </div>
@@ -84,6 +81,6 @@ export const DatePicker = () => {
           </div>
         </div>
       </div>
-    </div>
+    </Fragment>
   );
 };

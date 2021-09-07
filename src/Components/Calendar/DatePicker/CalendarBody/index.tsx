@@ -1,47 +1,36 @@
 import { v4 } from "uuid";
 import moment from "moment";
+
 import "./index.scss";
 import { Day } from "./Day";
-import { useState, useEffect } from "react";
 
 export const CalendarBody = ({
-  // setSelected,
   month,
+  selectedDay,
   setAvailibility,
   calendar,
 }: {
-  // setSelected:Function;
   month: string;
   setAvailibility: Function;
+  selectedDay: string;
   calendar: number[][];
 }) => {
-  // console.log(moment(month).format("YYYY-MM-DD"))
-
-  const [selected, setSelected] = useState<string>(
-    moment(month).format("YYYY-MM-DD")
-  );
-
-  useEffect(() => {
-    setSelected(moment(month).format("YYYY-MM-DD"))
-  }, [selected]);
-
-  console.log(selected)
-
   return (
-    <div key={`${v4()}`} className="rTable">
-      <div key={`${v4()}`} className="rTableRow">
-        {moment.weekdaysShort().map((e) => (
-          <div key={`${v4()}`} className="rTableCell">
-            {e}
+    <div className="rTable">
+      <div className="rTableRow">
+        {moment.weekdaysShort().map((weekday: string) => (
+          <div key={weekday} className="rTableCell">
+            {weekday}
           </div>
         ))}
       </div>
       {calendar.map((row) => (
         <div key={`${v4()}`} className="rTableRow">
-          {row.map((e) => (
+          {row.map((day: number, i: number) => (
             <Day
-              setSelected={setSelected}
-              day={e}
+              key={day + "-" + i}
+              selectedDay={selectedDay}
+              day={day}
               yearmonth={month}
               setAvailability={setAvailibility}
             ></Day>

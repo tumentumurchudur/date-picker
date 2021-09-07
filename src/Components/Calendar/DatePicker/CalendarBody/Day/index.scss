@@ -18,7 +18,7 @@
   flex-direction: column;
 }
 
-.selected span{
+.selected span {
   background-color: rgba(22, 155, 213, 1);
   color: black;
 }
@@ -41,11 +41,11 @@
   opacity: 1;
 }
 
-.text {
-  color: #8c8c8c;
-  transition: 0.5s;
-  font-size: 20px;
-}
+// .text {
+//   color: #8c8c8c;
+//   transition: 0.5s;
+//   font-size: 20px;
+// }
 
 .hand {
   cursor: pointer;
